@@ -1,0 +1,33 @@
+{%extends 'base.html' %}
+{% block content %}
+<h1>All entries</h1>
+{% if movies|length == 0 %}
+    <p>There's nothing here yet!</p>
+{% else %}
+    <table>
+        <tr>
+            <th>Year</th>
+            <th>Title</th>
+            <th>Origin</th>
+            <th>Director</th>
+            <th>Cast</th>
+            <th>Genre</th>
+            <th>Wiki</th>
+            <th>Plot</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <th>{{movie.year}}</th>
+            <th>{{movie.title}}</th>
+            <th>{{movie.origin}}</th>
+            <th>{{movie.director}}</th>
+            <th>{{movie.cast}}</th>
+            <th>{{movie.genre}}</th>
+            <th>{{movie.wiki}}</th>
+            <th>{{movie.plot}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}
