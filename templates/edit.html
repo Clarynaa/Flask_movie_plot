@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% if movie %}
+<table>
+    <tr>
+        <th>Sbumit Edit</th>
+        <th>Year</th>
+        <th>Title</th>
+        <th>Origin</th>
+        <th>Director</th>
+        <th>Cast</th>
+        <th>Genre</th>
+        <th>Wiki</th>
+        <th>Plot</th>
+    </tr>
+    <tr>
+        <form action='/' method='POST' name='editform'>
+            <th><button type='submit'>Submit Edit</button></th>
+            <th><input type='text' name='yr' placeholder='{{movie.year}}'></th>
+            <th><input type='text' name='title' placeholder='{{movie.title}}'></th>
+            <th><input type='text' name='origin' placeholder='{{movie.origin}}'></th>
+            <th><input type='text' name='director' placeholder='{{movie.director}}'></th>
+            <th><input type='text' name='cast' placeholder='{{movie.cast}}'></th>
+            <th><input type='text' name='genre' placeholder='{{movie.genre}}'></th>
+            <th><input type='text' name='wiki' placeholder='{{movie.wiki}}'></th>
+            <th><textarea cols='30' name='plot' placeholder='{{movie.plot}}'></textarea></th>
+            <input type='hidden' name='id' value='{{movie.id}}'/>
+        </form>
+    </tr>
+</table>
+{% else %}
+<p>No entry found</p>
+{% endif %}
+{% endblock %}

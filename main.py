@@ -37,8 +37,29 @@ def create_movie_db():
     db.create_all()
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        movie_id = int(request.form['id'])
+        new_yr = request.form['yr']
+        new_title = request.form['title']
+        new_origin = request.form['origin']
+        new_director = request.form['director']
+        new_cast = request.form['cast']
+        new_genre = request.form['genre']
+        new_wiki = request.form['wiki']
+        new_plot= request.form['plot']
+        movie = Movie.query.get(movie_id)
+        movie.year = new_yr
+        movie.title = new_title
+        movie.origin = new_origin
+        movie.director = new_director
+        movie.cast = new_cast
+        movie.genre = new_genre
+        movie.wiki = new_wiki
+        movie.plot = new_plot
+
+        db.session.commit()
     if request.args.get('page'):
         page = int(request.args.get('page'))
         movies = Movie.query.order_by(Movie.id.desc()).paginate(page = page, per_page=20)
@@ -47,11 +68,14 @@ def index():
         movies = Movie.query.order_by(Movie.id.desc()).all()
         return render_template('home.html', movies=movies)
 
-@app.route('/edit')
+@app.route('/edit', methods=['POST'])
 def edit():
-    #TODO: Add eiditing.  edit button on previous page links to a specific item.  Which is then displayed here in editable format, then updated via sql on submission.   ALso allow adding
+    edit_id = request.form["edit_id"]
+    movie = Movie.query.filter_by(id = edit_id).first()
+    return render_template('edit.html', movie = movie)
+    #TODO: Add editing.  edit button on previous page links to a specific item.  Which is then displayed here in editable format, then updated via sql on submission.   ALso allow adding
 
 
-if __name__ == "__ main__":
+if __name__ == "__main__":
     app.run()
 
