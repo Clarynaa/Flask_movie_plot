@@ -4,9 +4,10 @@
 {% if movies|length == 0 %}
     <p>There's nothing here yet!</p>
 {% else %}
-    <table style="width:75%">
+    <table style="width:100%">
         <tr>
             <th>Edit</th>
+            <th>Delete</th>
             <th>Year</th>
             <th>Title</th>
             <th>Origin</th>
@@ -19,6 +20,7 @@
         {% for movie in movies %}
         <tr>
             <th><form method='post' action='/edit'>  <button name="edit_id" type="submit" value="{{movie.id}}">Edit</button></form></th>
+            <th><form method='post' action='/delete'>  <button name="delete" type="submit" value="{{movie.id}}">Delete</button></form></th>
             <th>{{movie.year}}</th>
             <th>{{movie.title}}</th>
             <th>{{movie.origin}}</th>

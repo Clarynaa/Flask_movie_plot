@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Add</h1>
+<table>
+    <tr>
+        <th>Add Movie</th>
+        <th>Year</th>
+        <th>Title</th>
+        <th>Origin</th>
+        <th>Director</th>
+        <th>Cast</th>
+        <th>Genre</th>
+        <th>Wiki</th>
+        <th>Plot</th>
+    </tr>
+    <tr>
+        <form action='/add' method='POST' name='editform'>
+            <th><button type='submit'>Add Movie</button></th>
+            <th><input type='text' name='yr'></th>
+            <th><input type='text' name='title'></th>
+            <th><input type='text' name='origin'></th>
+            <th><input type='text' name='director'></th>
+            <th><input type='text' name='cast'></th>
+            <th><input type='text' name='genre'></th>
+            <th><input type='text' name='wiki'></th>
+            <th><textarea cols='30' name='plot'></textarea></th>
+        </form>
+    </tr>
+</table>
+{% endblock %}
